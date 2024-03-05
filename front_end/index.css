@@ -1,0 +1,14 @@
+*{
+    margin: 0;
+    padding:0;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    color:white 
+}
+
+body {
+    background-color: red;
+    
+    background-image: url("achtergrond.jpg");
+
+
+}
