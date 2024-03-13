@@ -4,9 +4,32 @@
     <link href="index.css" rel="stylesheet" type="text/css" />
     <title>Eindproject informatica: hanschrift herkenning</title>
   </head>
-  <body>
-    <p id="hmm">hmmmmm....</p>
-    <img src="hmmmm_silly.png">
+<body>
+<div id="uploadcontainer">
+    <form id='uploaden'>
+      <div id="bestandcontainer">
+        <input type= "file" id="bestand" accept=".jpg"> </input> <br>
+        <button type=" bevestigen ">Bevestigen upload</button>
+      </div>
+    </form>
+</div>
+    <script> 
+      document.getElementById('uploaden').addEventListener('submit', function(e){
+        e.preventDefault();
+
+       const bestandGebruiker= document.getElementById('bestand').files[0];
+
+       const vormData= new FormData();
+       vormData.append('bestand van gebruiker', bestandGebruiker, 'bestand-Gebruiker.jpg');
+
+       fetch('https://httpbin.org/post', {
+        method: "POST",
+        body: vormData,})
+       .then(res=> res.json())
+       .then(data => console.log(data))
+       .catch(err => console.log(err))
+      })
+    </script>
     <h1>
       <div class=titel>
         <p>welkom bij de webpagina van ons informatica eindproject</p>
