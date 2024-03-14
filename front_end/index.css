@@ -3,23 +3,89 @@ body {
 
 }
 
-#uploadcontainer {
-    display: flex; /* Hier moet je display: flex; toepassen */
-    justify-content: center;
-    align-items: center;
-    
-}
+.container {
+    display: grid;
+    height: 100vh;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 0.2fr 1.5fr 1.2fr 0.8fr;
+    grid-template-areas:
+      "titel titel titel titel"
+      "afbeelding uitleg uitleg uitleg"
+      "afbeelding invoeren bevestigen resultaat"
+      "afbeelding reclame reclame reclame";
+    grid-gap: 0.2rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 12px;
+    color: #004d40;
+    text-align: center;
+  }
+  
+titel {
+    background: #d0d1d0;
+    grid-area: titel;
+    border-radius: var(--main-radius);
+    padding-top: var(--main-padding);
+  }
+  
+uitleg {
+    background: #c1cec8;
+    grid-area: uitleg;
+    border-radius: var(--main-radius);
+    padding-top: var(--main-padding);
+  }
+  
+#afbeelding {
+    background: #c1cec8;
+    grid-area: afbeelding;
+    border-radius: var(--main-radius);
+    padding-top: var(--main-padding);
+  }
+  
+#invoeren {
+    background: #c1cec8;
+    grid-area: invoeren;
+    border-radius: var(--main-radius);
+    padding-top: var(--main-padding);
+  }
+  
+#bevestigen {
+    background: #c1cec8;
+    grid-area: bevestigen;
+    border-radius: var(--main-radius);
+    padding-top: var(--main-padding);
+    z-index:-1;
 
+  }
+  
+#resultaat {
+    background: #c1cec8;
+    grid-area: resultaat;
+    border-radius: var(--main-radius);
+    padding-top: var(--main-padding);
+  }
+  
+reclame {
+    background: #c0c9c4;
+    grid-area: reclame;
+    border-radius: var(--main-radius);
+    padding-top: var(--main-padding);
+  }
 
 
 
 button {
-    margin-top: 0px; /* Optioneel: voegt wat ruimte toe tussen het bestandsinvoerveld en de knop */
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    bottom: 309.5px; /* Afstand van de knop tot de onderkant van het bestandsinvoerveld */
-    
+    width: 200px;
+    height: 125px;
+    background-color: #c0c9c4;
+    font-weight: bold;
+    font-size: 3rem;
+    cursor: pointer;
+    border:none;
+    grid-area: bevestigen;
+} 
+button:hover{
+    background-color: lightblue;
 }
 *{
     margin: 0;
@@ -27,36 +93,28 @@ button {
     font-family: 'Be Vietnam Pro', sans-serif;
     color:black 
 }
-#bestand {
-    width: 700pxpx;
+#bestand::-webkit-file-upload-button {
+    visibility: hidden;
+}
+#bestand , input[type=button]{
+    width: 500px;
     height: 200px;
-    display: grid;
-    grid-template-columns: auto;
-    grid-gap: 10px; /* Optioneel: ruimte tussen de elementen */
+    background-color: #c0c9c4;
+    text-align: center;
+    
     font-size: 3rem;
-    background-color: lightgray;
+    
     border: solid;
     border-radius: 25px;
     text-align: center;
     cursor: pointer;
-    position: relative;
-
+    position: relative;  
+    transition: .5s all;
+    grid-area: invoeren;
 }
-
-#button {
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
-    
-
-}
-button{
-    width: 450px;
-    height: 125px;
-    border-radius: 50px;
+#bestand:hover {
     background-color: lightblue;
-    font-weight: bold;
-    font-size: 3rem;
-    cursor: pointer;
-    border: solid;
 }
+
+
 

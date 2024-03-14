@@ -1,45 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <link href="index.css" rel="stylesheet" type="text/css" />
-    <title>Eindproject informatica: hanschrift herkenning</title>
-  </head>
+    <title>Eindproject informatica: handschrift herkenning</title>
+</head>
 <body>
-<div id="uploadcontainer">
-    <form id='uploaden'>
-      <div id="bestandcontainer">
-        <input type= "file" id="bestand" accept=".jpg"> </input> <br>
-        <button type=" bevestigen ">Bevestigen upload</button>
-      </div>
-    </form>
-</div>
-    <script> 
-      document.getElementById('uploaden').addEventListener('submit', function(e){
+
+<form id='uploaden'>
+    <div class="container">
+        <input type="file" id="bestand" accept=".jpg"></input>
+        <button type="submit">Bevestigen upload</button>
+        <titel>titel</titel>
+        <uitleg>uitleg</uitleg>
+        <div id="afbeelding">afbeelding</div>
+        <div id="invoeren">invoeren</div>
+        <div id="bevestigen">bevestigen</div>
+        <div id="resultaat">resultaat</div>
+        <reclame>reclame</reclame>
+    </div>
+</form>
+
+<script> 
+    document.getElementById('uploaden').addEventListener('submit', function(e){
         e.preventDefault();
 
-       const bestandGebruiker= document.getElementById('bestand').files[0];
+        const bestandGebruiker= document.getElementById('bestand').files[0];
 
-       const vormData= new FormData();
-       vormData.append('bestand van gebruiker', bestandGebruiker, 'bestand-Gebruiker.jpg');
+        const vormData= new FormData();
+        vormData.append('bestand van gebruiker', bestandGebruiker, 'bestand-Gebruiker.jpg');
 
-       fetch('https://httpbin.org/post', {
-        method: "POST",
-        body: vormData,})
-       .then(res=> res.json())
-       .then(data => console.log(data))
-       .catch(err => console.log(err))
-      })
-    </script>
-    <h1>
-      <div class=titel>
-        <p>welkom bij de webpagina van ons informatica eindproject</p>
-      </div>
-  
-      <br> <a href= "ahetprogramma.html">kijk hier naar de code van het programma.<a/>
-      <br> 
-      <a href = "aprobleempagina.html"> wat waren de problemen tijden het project.<a/> 
-  
-      <br> <a href = "aextra pagina.html" > wat zouden eventuele verbeteringen van het project zijn? <a/>
-  </h1>
-  </body>
+        fetch('https://httpbin.org/post', {
+            method: "POST",
+            body: vormData,
+        })
+        .then(res=> res.json())
+        .then(data => console.log(data))
+        .catch(err => console.log(err))
+    })
+</script>
+
+</body>
 </html>
