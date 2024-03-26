@@ -21,6 +21,26 @@
 </form>
 
 <script> 
+    document.getElementById('bestand').addEventListener('change', function(e){
+        const afbeeldingVak = document.getElementById('afbeelding');
+        const bestandGebruiker = e.target.files[0];
+
+        // Maak een FileReader object aan om het bestand te lezen
+        const lezer = new FileReader();
+
+        // Wanneer het bestand geladen is, toon het in het afbeelding vak
+        lezer.onload = function(event) {
+            const afbeeldingElement = document.createElement('img');
+            afbeeldingElement.src = event.target.result;
+            afbeeldingVak.innerHTML = '';
+            afbeeldingVak.appendChild(afbeeldingElement);
+        }
+
+        // Lees het bestand als een data URL
+        lezer.readAsDataURL(bestandGebruiker);
+    });
+
+
     document.getElementById('uploaden').addEventListener('submit', function(e){
         e.preventDefault();
 
