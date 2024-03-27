@@ -10,7 +10,7 @@ body {
     grid-template-rows: 0.2fr 1.5fr 1.2fr 0.8fr;
     grid-template-areas:
       "titel titel titel titel"
-      "afbeelding uitleg uitleg uitleg"
+      "afbeelding uitleg uitleg reset"
       "invoeren  resultaat reclame reclame"
       "bevestigen resultaat reclame reclame";
     grid-gap: 0.2rem;
@@ -82,7 +82,25 @@ uitleg {
     border-radius: var(--main-radius);
     padding-top: var(--main-padding);
   }
-  
+#reset {
+  background: #c1cec8;
+  grid-area: reset;
+  border-radius: var(--main-radius);
+  padding-top: var(--main-padding);
+}
+#reset:hover{
+  background-color: lightblue;
+  cursor: pointer;
+}
+.reloadButton {
+  background-color: #c1cec8 ;
+  width: 100%;
+  height: 100%;
+}
+
+.reloadButton:hover {
+  background-color: lightblue;
+}
 #reclame {
     
     background: #c0c9c4;

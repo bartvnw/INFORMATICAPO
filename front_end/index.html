@@ -14,12 +14,15 @@
         <button type="submit">klik hier om uw upload te bevestigen</button>
         <titel>titel</titel>
         <uitleg>uitleg</uitleg>
-        <div id="afbeelding">afbeelding</div>
+        <div id="afbeelding">uw gekozen afbeelding: </div>
         <div id="invoeren">
-            <div class="bovenste-tekst">Kies hieronder wat u wilt invoeren</div>
+            <div class="bovenste-tekst">Kies hieronder wat u wilt invoeren:</div>
         </div>
         <div id="bevestigen">bevestigen</div>
         <div id="resultaat">resultaat</div>
+        <div id="reset"> 
+            <button class="reloadButton">klik hier om opnieuw te beginnen</button>
+        </div>
         <div id="reclame"> 
             <a href="https://www.crazydogtshirts.com/collections/funny-cat/products/mens-avagato-funny-t-shirts-avocado-cat-tee-cute-cat-face-shirt-novelty-t-shirt?variant=7000697110573" 
             target="_blank">
@@ -60,16 +63,26 @@
         const vormData= new FormData();
         vormData.append('bestand van gebruiker', bestandGebruiker, 'bestand-Gebruiker.jpg');
 
-        fetch('https://httpbin.org/post', {
+        fetch('http://localhost:5000/process_image', {
             method: "POST",
             body: vormData,
         })
         .then(res=> res.json())
-        .then(data => console.log(data))
+        //.then(data => console.log(data))
+        .then(data => {
+        // Toon het resultaat op de website
+        document.getElementById('resultaat').textContent = `Afbeelding breedte: ${data.width}, hoogte: ${data.height}`;
+    })
         .catch(err => console.log(err))
     })
+//zorgt ervoor dat de website gereset wordt als je op de reloadButton knop klikt
+document.querySelector('.reloadButton').addEventListener('click', function() { 
+    var confirmed = confirm("weet je zeker dat je opneiuw wilt beginnen?");
+    if (confirmed) {
+        location.reload()
+    }
 
-
+});
 </script>
 
 </body>
