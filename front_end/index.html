@@ -7,16 +7,27 @@
 <body>
 
 <form id='uploaden'>
+    
     <div class="container">
         <input type="file" id="bestand" accept=".jpg"></input>
-        <button type="submit">Bevestigen upload</button>
+        
+        <button type="submit">klik hier om uw upload te bevestigen</button>
         <titel>titel</titel>
         <uitleg>uitleg</uitleg>
         <div id="afbeelding">afbeelding</div>
-        <div id="invoeren">invoeren</div>
+        <div id="invoeren">
+            <div class="bovenste-tekst">Kies hieronder wat u wilt invoeren</div>
+        </div>
         <div id="bevestigen">bevestigen</div>
         <div id="resultaat">resultaat</div>
-        <reclame>reclame</reclame>
+        <div id="reclame"> 
+            <a href="https://www.crazydogtshirts.com/collections/funny-cat/products/mens-avagato-funny-t-shirts-avocado-cat-tee-cute-cat-face-shirt-novelty-t-shirt?variant=7000697110573" 
+            target="_blank">
+            <img src="catshirt.webp">
+            </a>
+
+        </div>
+
     </div>
 </form>
 
@@ -57,6 +68,8 @@
         .then(data => console.log(data))
         .catch(err => console.log(err))
     })
+
+
 </script>
 
 </body>

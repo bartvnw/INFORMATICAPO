@@ -11,8 +11,8 @@ body {
     grid-template-areas:
       "titel titel titel titel"
       "afbeelding uitleg uitleg uitleg"
-      "afbeelding invoeren bevestigen resultaat"
-      "afbeelding reclame reclame reclame";
+      "invoeren  resultaat reclame reclame"
+      "bevestigen resultaat reclame reclame";
     grid-gap: 0.2rem;
     font-weight: 800;
     text-transform: uppercase;
@@ -40,14 +40,30 @@ uitleg {
     grid-area: afbeelding;
     border-radius: var(--main-radius);
     padding-top: var(--main-padding);
+    overflow: hidden;
+    
   }
+#afbeelding img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
   
 #invoeren {
     background: #c1cec8;
     grid-area: invoeren;
     border-radius: var(--main-radius);
     padding-top: var(--main-padding);
+    display: grid;
+    grid-template-rows: 28% 70%;
+    
   }
+  .bovenste-tekst {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+}
   
 #bevestigen {
     background: #c1cec8;
@@ -55,8 +71,10 @@ uitleg {
     border-radius: var(--main-radius);
     padding-top: var(--main-padding);
     z-index:-1;
-
+    
   }
+
+
   
 #resultaat {
     background: #c1cec8;
@@ -65,18 +83,24 @@ uitleg {
     padding-top: var(--main-padding);
   }
   
-reclame {
+#reclame {
+    
     background: #c0c9c4;
     grid-area: reclame;
     border-radius: var(--main-radius);
     padding-top: var(--main-padding);
   }
-
+  #reclame img {
+    max-width: 100%;
+    max-height: 100%;
+  
+    
+}
 
 
 button {
-    width: 200px;
-    height: 125px;
+  max-width: 100%;
+  max-height: 100%;
     background-color: #c0c9c4;
     font-weight: bold;
     font-size: 3rem;
@@ -97,10 +121,10 @@ button:hover{
     visibility: hidden;
 }
 #bestand , input[type=button]{
-    width: 500px;
-    height: 200px;
-    background-color: #c0c9c4;
-    text-align: center;
+  max-width: 100%;
+  height: 70%;
+  background-color: #c0c9c4;
+  align-self: end;
     
     font-size: 3rem;
     
