@@ -95,25 +95,17 @@ als je op deze foto klikt dat er een nieuw tabblad opend die je naar de pagina v
         vormData.append('bestand van gebruiker', bestandGebruiker, 'bestand-Gebruiker.jpg');
 
         // Start the Flask server by making a fetch request to a specific URL
-        fetch('/start_flask_server', {
-               method: 'GET',
-          })
-            .then(response => {
-               if (!response.ok) {
-                  throw new Error('Failed to start Flask server');
-               }
-              // Continue with the original image processing request
-              return fetch('/process_image', {
-                  method: 'POST',
-                  body: vormData,
-              });
+        fetch('http://127.0.0.1:5500/front_end/index.html/process_image', {
+            method: 'POST',
+            body: vormData,
+            });
           })
          .then(res => res.json())
          .then(data => {
-             document.getElementById('resultaat').textContent = data.resultaat;
+         document.getElementById('resultaat').textContent = data.resultaat;
          })
-          .catch(err => console.log(err));
-});
+        .catch(err => console.log(err));
+;
 //zorgt ervoor dat de website gereset wordt als je op de reloadButton knop klikt
 document.querySelector('.reloadButton').addEventListener('click', function() { 
     var confirmed = confirm("weet je zeker dat je opnieuw wilt beginnen?");

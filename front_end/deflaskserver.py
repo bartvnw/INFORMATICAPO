@@ -14,7 +14,7 @@ def start_server():
 def opstarten():
     return "yippie"
 
-@app.route('/process_image', methods=['POST'])
+@app.route('/front_end/index.html/process_image', methods=['POST'])
 def upload_and_process():
     if request.method == 'POST':
         if 'bestand van gebruiker' in request.files:

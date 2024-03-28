@@ -7,12 +7,11 @@
 </head>
 <body>
     <h1>Flask Server Auto-Start</h1>
-    <div id="message"></div>
+    <div id="message">The message should appear here.</div>
 
     <script>
-        // Fetch message from Flask server when the page loads
         window.onload = function() {
-            fetch('http://localhost:5500/')
+            fetch('http://localhost:5500/front_end/gpt_website.html/d')
                 .then(response => response.json())
                 .then(data => {
                     document.getElementById('message').textContent = data.message;
