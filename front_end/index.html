@@ -1,52 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- hier wordt de css pagina gekoppeld aan de html pagina  -->
     <link href="index.css" rel="stylesheet" type="text/css" />
     <title>Eindproject informatica: handschrift herkenning</title>
 </head>
+
 <body>
 
 <form id='uploaden'>
-    
+    <!-- de div claas die ocntainer heet zorgt ervoor dat er een plek is waar alle divs en buttons in 
+        op worden geslagen, zodat deze overzichtelijk opgemaakt kunnen worden met grid (in css) -->
     <div class="container">
+        <!-- Dit is de invoer, deze invoer heeft als type dat het een bestand (file) moet worden, 
+            hierdoor opend hij de bestanden van je apparaat zodat je een bestand kan uitkiezen. 
+            Achter accept staat .jpg, dit houdt in dat hij alleen maar jpg bestanden accepteerd   -->
         <input type="file" id="bestand" accept=".jpg"></input>
-        
+<!-- wordt de knop voor het bevestigen van de upload aangemaakt.  -->
         <button type="submit">klik hier om uw upload te bevestigen</button>
-        <titel>titel</titel>
+        <titel>Eindproject informatica: handschrift herkenning</titel>
         <uitleg>uitleg</uitleg>
         <div id="afbeelding">uw gekozen afbeelding: </div>
         <div id="invoeren">
+<!-- Hier wordt binnen de div van het invoeren nog een div aangemaatk die ervoor moet zorgen 
+dat de bovenste helft van het vak 'invoeren' niet als knop moet fungeren, maar als tekst-->
             <div class="bovenste-tekst">Kies hieronder wat u wilt invoeren:</div>
         </div>
         <div id="bevestigen">bevestigen</div>
         <div id="resultaat">resultaat</div>
         <div id="reset"> 
+<!-- hier wordt ervoor gezorgd dat de knop voor het herladen van de pagina binnen het vak 'reset' staat -->
             <button class="reloadButton">klik hier om opnieuw te beginnen</button>
         </div>
         <div id="reclame"> 
+<!-- binnen de div 'reclame wordt ervoor gezorgd dat de foto 'çatshirt.webp' in het vak komt, maar ook dat er
+als je op deze foto klikt dat er een nieuw tabblad opend die je naar de pagina van de webshop leidt -->
             <a href="https://www.crazydogtshirts.com/collections/funny-cat/products/mens-avagato-funny-t-shirts-avocado-cat-tee-cute-cat-face-shirt-novelty-t-shirt?variant=7000697110573" 
             target="_blank">
             <img src="catshirt.webp">
             </a>
 
         </div>
-
     </div>
 </form>
 
 <script> 
+//zoekt een html element met het id 'bestand'
+//Ook zorgt hij evoro dat de bijbehoorende functie wordt uitgevoerd voor elke keer dat het element 'bestand veranderd'
+//De functie die dan wordt uitgevoerd neemt e aan als parameter
     document.getElementById('bestand').addEventListener('change', function(e){
+// zoekt een html element met het id 'afbeelding' en deze koppelt hij met de variabele afbeelding vak. 
         const afbeeldingVak = document.getElementById('afbeelding');
+//Zorgt ervoor dat de parameter e en dus het gekozen bestand in een lijst komt en, omdat er maar een element
+//in de lijst voorkomt hoeft hij alleen maar het eerste bestand uit de lijst te halen en toewijzen aan de variabele bestandGebruiker
         const bestandGebruiker = e.target.files[0];
 
         // Maak een FileReader object aan om het bestand te lezen
         const lezer = new FileReader();
-
-        // Wanneer het bestand geladen is, toon het in het afbeelding vak
+        // als het gekozen bestand geladen is toont hij hem in het vak afbeelding
         lezer.onload = function(event) {
+        // hier wordt een nieuwe html element aangemaakt en ondergebracht onder de variabele afbeeldingElement
             const afbeeldingElement = document.createElement('img');
+        // het src attribuut van het img element op de gegevens van het gelezen bestand. 
+        // het stukje .result bevat de van het betand dat is gelezen door de fileReader.
             afbeeldingElement.src = event.target.result;
+        // zorgt dat het vak van de afbeelding helemaal leeg is
             afbeeldingVak.innerHTML = '';
+// zorgt ervoor dat het gemaakte img element nu ondergebracht wordt onder een ander element genaamd afbeeldingVak.
             afbeeldingVak.appendChild(afbeeldingElement);
         }
 

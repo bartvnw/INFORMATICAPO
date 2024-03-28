@@ -11,8 +11,8 @@ body {
     grid-template-areas:
       "titel titel titel titel"
       "afbeelding uitleg uitleg reset"
-      "invoeren  resultaat reclame reclame"
-      "bevestigen resultaat reclame reclame";
+      "invoeren  resultaat resultaat reclame"
+      "bevestigen resultaat resultaat reclame";
     grid-gap: 0.2rem;
     font-weight: 800;
     text-transform: uppercase;
