@@ -3,6 +3,17 @@
 <head>
     <!-- hier wordt de css pagina gekoppeld aan de html pagina  -->
     <link href="index.css" rel="stylesheet" type="text/css" />
+    <script>
+        // Send a request to start the Flask server when the page loads
+        window.onload = function() {
+            fetch('/start_server', {
+            method: 'GET' // Specify the HTTP method as GET
+             })
+                .then(response => response.json())
+                .then(data => console.log(data))
+                .catch(error => console.error('Error:', error));
+        };
+    </script>    
     <title>Eindproject informatica: handschrift herkenning</title>
 </head>
 
@@ -83,27 +94,37 @@ als je op deze foto klikt dat er een nieuw tabblad opend die je naar de pagina v
         const vormData= new FormData();
         vormData.append('bestand van gebruiker', bestandGebruiker, 'bestand-Gebruiker.jpg');
 
-        fetch('http://localhost:5000/process_image', {
-            method: "POST",
-            body: vormData,
-        })
-        .then(res=> res.json())
-        //.then(data => console.log(data))
-        .then(data => {
-        // Toon het resultaat op de website
-        document.getElementById('resultaat').textContent = `Afbeelding breedte: ${data.width}, hoogte: ${data.height}`;
-    })
-        .catch(err => console.log(err))
-    })
+        // Start the Flask server by making a fetch request to a specific URL
+        fetch('/start_flask_server', {
+               method: 'GET',
+          })
+            .then(response => {
+               if (!response.ok) {
+                  throw new Error('Failed to start Flask server');
+               }
+              // Continue with the original image processing request
+              return fetch('/process_image', {
+                  method: 'POST',
+                  body: vormData,
+              });
+          })
+         .then(res => res.json())
+         .then(data => {
+             document.getElementById('resultaat').textContent = data.resultaat;
+         })
+          .catch(err => console.log(err));
+});
 //zorgt ervoor dat de website gereset wordt als je op de reloadButton knop klikt
 document.querySelector('.reloadButton').addEventListener('click', function() { 
-    var confirmed = confirm("weet je zeker dat je opneiuw wilt beginnen?");
+    var confirmed = confirm("weet je zeker dat je opnieuw wilt beginnen?");
     if (confirmed) {
         location.reload()
     }
 
 });
 </script>
+
+<div id="resultaat">{{resultaat}}</div>
 
 </body>
 </html>
