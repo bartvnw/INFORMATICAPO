@@ -11,13 +11,14 @@
 
     <script>
         window.onload = function() {
-            fetch('http://localhost:5500/front_end/gpt_website.html/d')
-                .then(response => response.json())
+        fetch('http://127.0.0.1:5000/front_end/gpt_website.html/d', { method: 'GET' })
+        .then(response => response.json())
                 .then(data => {
+                    console.log('Response:', data);
                     document.getElementById('message').textContent = data.message;
                 })
                 .catch(error => console.error('Error:', error));
-        };
+};
     </script>
 </body>
 </html>
