@@ -85,26 +85,32 @@ als je op deze foto klikt dat er een nieuw tabblad opend die je naar de pagina v
         lezer.readAsDataURL(bestandGebruiker);
     });
 
-
+    fetch('http://127.0.0.1:5000/front_end/index.html/test')
+        .then(response => response.json())
+            .then(data => {
+                console.log('Response:', data);
+                document.getElementById('bleh').textContent = data.bleh;
+            })
+            .catch(error => console.error('Error:', error));
     document.getElementById('uploaden').addEventListener('submit', function(e){
         e.preventDefault();
 
-        const bestandGebruiker= document.getElementById('bestand').files[0];
-
-        const vormData= new FormData();
+        const bestandGebruiker = document.getElementById('bestand').files[0];
+        const vormData = new FormData();
         vormData.append('bestand van gebruiker', bestandGebruiker, 'bestand-Gebruiker.jpg');
 
         // Start the Flask server by making a fetch request to a specific URL
-        fetch('http://127.0.0.1:5500/front_end/index.html/process_image', {
+        fetch('http://127.0.0.1:5000/front_end/index.html/process_image', {
             method: 'POST',
             body: vormData,
-            });
-          })
-         .then(res => res.json())
-         .then(data => {
-         document.getElementById('resultaat').textContent = data.resultaat;
-         })
-        .catch(err => console.log(err));
+            })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Response:', data);
+            document.getElementById('resultaat').textContent = data.resultaat;
+        })
+        .catch(err => console.error('Error:', err));
+    });
 ;
 //zorgt ervoor dat de website gereset wordt als je op de reloadButton knop klikt
 document.querySelector('.reloadButton').addEventListener('click', function() { 
@@ -116,7 +122,6 @@ document.querySelector('.reloadButton').addEventListener('click', function() {
 });
 </script>
 
-<div id="resultaat">{{resultaat}}</div>
-
+<div id="bleh">bleh</div>
 </body>
 </html>

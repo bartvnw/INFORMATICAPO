@@ -1,18 +1,13 @@
 from flask import Flask, request, jsonify, render_template, send_file
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
-@app.route('/start_server', methods=['GET'])
-def start_server():
-    # Check if the server is already running
-    if 'werkzeug.serving' not in app.config:
-        # Start the server
-        app.run(host='localhost', port=5500, debug=True)
-    return jsonify({'message': 'Flask server started'})
-
-@app.route('/')
-def opstarten():
-    return "yippie"
+@app.route('/front_end/index.html/test')
+def test():
+    message = {'bleh': "Het werkt."}
+    return jsonify(message)
 
 @app.route('/front_end/index.html/process_image', methods=['POST'])
 def upload_and_process():
@@ -30,18 +25,17 @@ def upload_and_process():
             width = 100
             height = 100
             # Generate a string response
-            resultaat = "Hij geeft eindelijk iets terug"
+            resultaat = {'resultaat':"Hij geeft eindelijk iets terug"}
             # Alternatively, generate another version of the image and send it back
             # Example: Save the processed image to a new file and return the file path
             # processed_image_path = 'path_to_processed_image.jpg'
             # return send_file(processed_image_path, mimetype='image/jpeg')
 
-            return resultaat  # Return the response string
+            return jsonify(resultaat)  # Return the response string
         else:
-            return 'No file received'
+            return jsonify({'resultaat':'No file received'})
     else:
-        return render_template('index.html')
-        return "TERINGZOOI"
+        return jsonify({'resultaat':'TERINGZOOI'})
 
 if __name__ == '__main__':
-    app.run(host='localhost', port=5500, debug=True)
+    app.run(host='localhost', port=5000, debug=True)
