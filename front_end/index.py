@@ -25,13 +25,15 @@ def upload_and_process():
             width = 100
             height = 100
             # Generate a string response
-            resultaat = {'resultaat':"Hij geeft eindelijk iets terug"}
+            file.save('test_file.jpg')
             # Alternatively, generate another version of the image and send it back
             # Example: Save the processed image to a new file and return the file path
             # processed_image_path = 'path_to_processed_image.jpg'
             # return send_file(processed_image_path, mimetype='image/jpeg')
 
-            return jsonify(resultaat)  # Return the response string
+            return jsonify({'resultaat':'hier een fotootje:'})
+            return send_file('test_file.jpg' , mimetype='image/jpeg')  # Return the response string
+            
         else:
             return jsonify({'resultaat':'No file received'})
     else:
