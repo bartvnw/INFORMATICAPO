@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify, render_template, send_file
 from flask_cors import CORS
+from backend_eindpunt import backend_programma
 
 app = Flask(__name__)
 CORS(app)
@@ -14,26 +15,9 @@ def upload_and_process():
     if request.method == 'POST':
         if 'bestand van gebruiker' in request.files:
             file = request.files['bestand van gebruiker']
-            # Process the image file here
-            # Example: Get width and height of the image
-            width = 0
-            height = 0
-            # Example: Calculate width and height (replace this with your actual processing)
-            # For demonstration purposes, we are just assuming width and height as 100
-            # Replace the below code with your actual processing logic
-            # width, height = process_image_function(file)
-            width = 100
-            height = 100
-            # Generate a string response
-            file.save('test_file.jpg')
-            # Alternatively, generate another version of the image and send it back
-            # Example: Save the processed image to a new file and return the file path
-            # processed_image_path = 'path_to_processed_image.jpg'
-            # return send_file(processed_image_path, mimetype='image/jpeg')
-
-            return jsonify({'resultaat':'hier een fotootje:'})
-            return send_file('test_file.jpg' , mimetype='image/jpeg')  # Return the response string
-            
+            processed_file_resultaat = backend_programma(file)
+            message = {'resultaat':f'Het getal in de afbeelding is {processed_file_resultaat}'}
+            return jsonify(message)            
         else:
             return jsonify({'resultaat':'No file received'})
     else:
